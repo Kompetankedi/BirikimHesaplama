@@ -38,7 +38,6 @@
             this.btnBelirle = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtHdfblr = new System.Windows.Forms.TextBox();
-            this.lblyuzde = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -138,22 +137,12 @@
             this.txtHdfblr.TabIndex = 8;
             this.txtHdfblr.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // lblyuzde
-            // 
-            this.lblyuzde.AutoSize = true;
-            this.lblyuzde.Location = new System.Drawing.Point(147, 422);
-            this.lblyuzde.Name = "lblyuzde";
-            this.lblyuzde.Size = new System.Drawing.Size(26, 17);
-            this.lblyuzde.TabIndex = 12;
-            this.lblyuzde.Text = "%0";
-            // 
             // Birikim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(346, 448);
-            this.Controls.Add(this.lblyuzde);
             this.Controls.Add(this.btnBelirle);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtHdfblr);
@@ -186,7 +175,6 @@
         private System.Windows.Forms.Button btnBelirle;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtHdfblr;
-        private System.Windows.Forms.Label lblyuzde;
     }
 }
 

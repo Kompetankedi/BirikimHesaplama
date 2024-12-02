@@ -74,21 +74,19 @@ namespace BirikimHesaplama
             HedefAl(); 
         }
 
-         private void yuzdeHesap()
-         {
-             if (targetAmount > 0) { 
-             bakiyeAl();
-             HedefAl();
-             double yuzde = (currentAmount / targetAmount) * 0.10;
-             lblyuzde.Text = $"Tamamlanan: %{yuzde:0.00}";
-              }
-         }
+        /*private void yuzdeHesap()
+        {
+           if (targetAmount > 0)
+           {
+            double yuzde = (currentAmount / targetAmount) * 0.10;
+            lblyuzde.Text = $"Tamamlanan: %{yuzde:0.00}";
+             }
+        }*/
         private void Birikim_Load(object sender, EventArgs e)
         {
             CenterToScreen();
             bakiyeAl();
             HedefAl();
-            yuzdeHesap();
         }
 
        
