@@ -19,49 +19,71 @@ namespace BirikimHesaplama
         }
         SqlConnection con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Birikim;Integrated Security=True;Encrypt=False");
 
-        private int currentAmount = 0;
-        private int targetAmount = 0;
+        int currentAmount = 0;
+        int targetAmount = 0;
 
         private void bakiyeAl()
         {
-            if (con.State == ConnectionState.Closed) { 
-                con.Open(); }
-            SqlCommand cmd = new SqlCommand("Select bakiye from Birikimler where id=1 ", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
+            try
             {
-                currentAmount = dr.GetInt32(0);
-                lblBakiye.Text = currentAmount.ToString();
-            }
-            dr.Close();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlCommand cmd = new SqlCommand("Select bakiye from Birikimler where id=1 ", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    currentAmount = dr.GetInt32(0);
+                    lblBakiye.Text = currentAmount.ToString();
+                }
+                dr.Close();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void HedefAl()
         {
-            if (con.State == ConnectionState.Closed)
+            try
             {
-                con.Open();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlCommand com = new SqlCommand("Select Hedef from Birikimler where id=1 ", con);
+                SqlDataReader drr = com.ExecuteReader();
+                if (drr.Read())
+                {
+                    targetAmount = drr.GetInt32(0);
+                    lblHedef.Text = targetAmount.ToString();
+                }
+                drr.Close();
             }
-            SqlCommand com = new SqlCommand("Select Hedef from Birikimler where id=1 ", con);
-            SqlDataReader drr = com.ExecuteReader();
-            if (drr.Read())
+            catch (Exception ex)
             {
-                targetAmount = drr.GetInt32(0);
-                lblHedef.Text = targetAmount.ToString();
+                MessageBox.Show(ex.Message);
             }
-            drr.Close();
-
         }
         private void bakiyeEkle()
         {
-            if (con.State == ConnectionState.Closed)
-            { con.Open(); }
-            SqlCommand ccomm = new SqlCommand("UPDATE Birikimler SET Bakiye = Bakiye + @Ekmiktar WHERE id = @id", con);
-            ccomm.Parameters.AddWithValue("@Ekmiktar",Convert.ToInt32(txtBakiyeEkle.Text));
-            ccomm.Parameters.AddWithValue("@id",1);
-            ccomm.ExecuteNonQuery();
-            bakiyeAl();
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                { con.Open(); }
+                SqlCommand ccomm = new SqlCommand("UPDATE Birikimler SET Bakiye = Bakiye + @Ekmiktar WHERE id = @id", con);
+                ccomm.Parameters.AddWithValue("@Ekmiktar", Convert.ToInt32(txtBakiyeEkle.Text));
+                ccomm.Parameters.AddWithValue("@id", 1);
+                ccomm.ExecuteNonQuery();
+                bakiyeAl();
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void hedefBelirle()
         {
@@ -74,19 +96,33 @@ namespace BirikimHesaplama
             HedefAl(); 
         }
 
-        /*private void yuzdeHesap()
+        private void yuzdeHesap()
         {
-           if (targetAmount > 0)
-           {
-            double yuzde = (currentAmount / targetAmount) * 0.10;
-            lblyuzde.Text = $"Tamamlanan: %{yuzde:0.00}";
-             }
-        }*/
+            try
+            {
+                if (targetAmount > 0)
+                {
+                    double yuzde = (double)currentAmount / targetAmount * 100;
+                    string s = $"Tamamlanan: %{yuzde:0.00}";
+                    lblyuzde.Text = s;
+                    progressBar1.Value = Convert.ToInt32(yuzde);
+                    if (progressBar1.Value >= 100) {
+                        MessageBox.Show("Helal  bittirdin birikimi.");
+                     
+                    }
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Birikim_Load(object sender, EventArgs e)
         {
             CenterToScreen();
             bakiyeAl();
             HedefAl();
+            yuzdeHesap();
         }
 
        
@@ -94,16 +130,38 @@ namespace BirikimHesaplama
         private void button1_Click_1(object sender, EventArgs e)
         {
             bakiyeEkle();
+            yuzdeHesap();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnBelirle_Click(object sender, EventArgs e)
         {
             hedefBelirle();
+            yuzdeHesap();
+        }
+
+        private void lblyuzde_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(con.State == ConnectionState.Closed) 
+                con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE Birikimler set Hedef =0,bakiye=0 where id=1",con);
+            cmd.ExecuteNonQuery();
+            bakiyeAl();
+            HedefAl();
         }
     }
 }

@@ -38,6 +38,9 @@
             this.btnBelirle = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtHdfblr = new System.Windows.Forms.TextBox();
+            this.lblyuzde = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -137,12 +140,44 @@
             this.txtHdfblr.TabIndex = 8;
             this.txtHdfblr.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // lblyuzde
+            // 
+            this.lblyuzde.AutoSize = true;
+            this.lblyuzde.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblyuzde.Location = new System.Drawing.Point(13, 375);
+            this.lblyuzde.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblyuzde.Name = "lblyuzde";
+            this.lblyuzde.Size = new System.Drawing.Size(62, 32);
+            this.lblyuzde.TabIndex = 11;
+            this.lblyuzde.Text = "Null";
+            this.lblyuzde.Click += new System.EventHandler(this.lblyuzde_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(-1, 420);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(347, 32);
+            this.progressBar1.TabIndex = 12;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(271, 397);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Sıfırla";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Birikim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(346, 448);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.lblyuzde);
             this.Controls.Add(this.btnBelirle);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtHdfblr);
@@ -157,7 +192,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Birikim";
             this.ShowIcon = false;
-            this.Text = "Form1";
+            this.Text = "Birikim";
             this.Load += new System.EventHandler(this.Birikim_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,6 +210,9 @@
         private System.Windows.Forms.Button btnBelirle;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtHdfblr;
+        private System.Windows.Forms.Label lblyuzde;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
