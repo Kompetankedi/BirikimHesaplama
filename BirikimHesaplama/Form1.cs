@@ -106,6 +106,8 @@ namespace BirikimHesaplama
                     string s = $"Tamamlanan: %{yuzde:0.00}";
                     lblyuzde.Text = s;
                     progressBar1.Value = Convert.ToInt32(yuzde);
+                    bunifuCircleProgress1.Value=Convert.ToInt32(yuzde);
+                    bunifuCircleProgress1.Text = yuzde.ToString();
                     if (progressBar1.Value >= 100) {
                         MessageBox.Show("Helal  bittirdin birikimi.");
                      
@@ -162,6 +164,18 @@ namespace BirikimHesaplama
             cmd.ExecuteNonQuery();
             bakiyeAl();
             HedefAl();
+        }
+
+        private void bunifuButton1_Click(object sender, EventArgs e)
+        {
+            bakiyeEkle();
+            yuzdeHesap();
+        }
+
+        private void bunifuButton2_Click(object sender, EventArgs e)
+        {
+            hedefBelirle();
+            yuzdeHesap();
         }
     }
 }
